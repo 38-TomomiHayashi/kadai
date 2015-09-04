@@ -24,8 +24,9 @@ for ($a = 0; $a < count($line); $a++) {
 
 	for ($b = 0; $b < count($data); $b++) {
 		echo '<TD style="' . $style . '">' . $data[$b] . '</TD>';
-		echo '</TR>';
 	}
+	
+	echo '</TR>';
 }
 echo '</TBODY></TABLE>';
 ?>
