@@ -1,3 +1,48 @@
+<?php 
+session_start();
+
+$name = "";
+$age = "";
+$sex = "";
+$hobby = array();
+
+// 「送信する」ボタン押下時の入力チェック
+$errors = array();
+if (isset($_POST['submit'])) {	
+	if ($_POST['name'] === "") {
+		$errors['name'] = "氏名が入力されていません。";
+	} else {
+		$name = $_POST['name'];
+	}
+	
+	if ($_POST['age'] === "") {
+		$errors['age'] = "年齢が入力されていません。";
+	} else {
+		$age = $_POST['age'];
+	}
+	
+	if (!isset($_POST['sex'])) {
+		$errors['sex'] = "性別が選択されていません。";
+	} else {
+		$sex = $_POST['sex'];
+	}
+	
+	if (!isset($_POST['hobby'])) {
+		$errors['hobby'] = "趣味が選択されていません。";
+	} else {
+		$hoby = $_POST['hoby'];
+	}
+	
+	// 入力エラーがなければ次のページに移動
+	if (empty($errors)) {
+		$_SESSION['enq'] = $_POST;
+		header("Location: comfirm_enq.php");
+		exit();
+	}
+}
+?> 
+
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -10,18 +55,36 @@
 		border: solid 1px #cccccc;
 		padding: 20px;
 	}
+	#message {
+		color: red;
+		width: 500px;
+		margin: 0 auto;
+	}
 </style>
 </head>
 <body>
 <h2>アンケート</h2>
+<div id="message">
+<ul>
+<?php
+foreach($errors as $message){
+    echo "<li>"; 
+    echo $message;
+    echo "</li>"; 
+}
+?>
+</ul>
+</div>
 <div id="ancate">
-<form action="comfirm_enq.php" method="post">
+	<form action="input_enq.php" method="post">
 	<dl id="entry-form">
 		<dt><label for="name">氏名</label></dt>
-		<dd><input type="text" name="name" id="name"></dd>
+		<dd><input type="text" name="name" id="name" 
+				   value="<?php echo $name ?>"></dd>
 
 		<dt><label for="age">年齢</label></dt>
-		<dd><input type="number" name="age" id="age"></dd>
+		<dd><input type="number" name="age" id="age" 
+				   value="<?php echo $age ?>"></dd>
 
 		<dt><label>性別</label></dt>
 		<dd>
@@ -49,13 +112,3 @@
 
 </body>
 </html>
-
-<?php 
-if (isset($_POST["submit"])) {   
-    if (empty($_POST["name"]) || empty($_POST["age"])
-				|| empty($_POST["sex"]) || empty($_POST["hobby"])) {   
-      window.ale("未入力の項目があります。");  
-      exit();  
-    }
-} 
-?> 

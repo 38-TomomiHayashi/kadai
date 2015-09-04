@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?> 
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -20,19 +24,19 @@
 	<dl id="entry-form">
 		<dt><label for="name">氏名</label></dt>
 		<dd><input type="text" name="name" id="name" readonly="readonly"
-							 value="<?php echo $_POST["name"]; ?>" ></dd>
+							 value="<?php echo $_SESSION["enq"]["name"]; ?>" ></dd>
 
 		<dt><label for="age">年齢</label></dt>
 		<dd><input type="number" name="age" id="age" readonly="readonly"
-							 value="<?php echo $_POST["age"]; ?>" ></dd>
+							 value="<?php echo $_SESSION["enq"]["age"]; ?>" ></dd>
 
 		<dt><label>性別</label></dt>
 		<dd><input type="text" name="sex" id="sex" readonly="readonly"
-							 value="<?php echo $_POST["sex"]; ?>" ></dd>
+							 value="<?php echo $_SESSION["enq"]["sex"]; ?>" ></dd>
 		
 		<dt><label>趣味</label></dt>
 		<dd><input type="text" name="hobby" id="hobby" readonly="readonly"
-							 value="<?php echo implode('/', $_POST["hobby"]); ?>" ></dd>
+							 value="<?php echo implode('/', $_SESSION["enq"]["hobby"]); ?>" ></dd>
 	</dl>
 	<input type="submit" value="送信する">
 </form>
