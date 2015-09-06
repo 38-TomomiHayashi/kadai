@@ -22,14 +22,25 @@
             <span class="section-title__yellow">News</span><span class="section-title-ja text-center">お知らせ・更新情報</span>
         </h2>
         <article class="news-detail">
-            <dl class="clearfix">
-                <dt class="news-date">2015.07.12</dt>
-                <dd class="news-description">初日開講しました！</dd>
-                <dt class="news-date">2015.06.12</dt>
-                <dd class="news-description">初めてのチーズハッカソンを開催しました！</dd>
-                <dt class="news-date">2015.04.11</dt>
-                <dd class="news-description">トーキョーチーズFesを開催いたしました！</dd>
-            </dl>
+			<dl class="clearfix">
+				<?php 
+				$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
+				$sql = "SELECT DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, news_title FROM news ORDER BY create_date DESC LIMIT 5";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute();
+				$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				foreach($results as $row) {
+					echo '<dt class="news-date">';
+					echo $row['format_date'];
+					echo '</dt>';
+					echo '<dd class="news-description">';
+					echo mb_substr($row['news_title'], 0, 10);
+					if (mb_strlen($row['news_title']) > 10) {echo ' ...';}
+					echo '</dd>';
+				}
+				$pdo = null;
+				?>
+			</dl>
             <p class="view-detail text-right"><a href="#">ニュース一覧を見る</a></p>
         </article>
     </section>
