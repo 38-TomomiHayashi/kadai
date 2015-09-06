@@ -1,3 +1,19 @@
+<?php
+$news_id = $_GET['news_id'];
+
+$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
+$sql = "SELECT news_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, news_title, news_detail FROM news WHERE news_id = " . $news_id;
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$date = $results[0]['format_date'];
+$title = $results[0]['news_title'];
+$detail = $results[0]['news_detail'];
+
+$pdo = null;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +30,12 @@
     <section class="news contents-box">
         <h2 class="section-title text-center">
             <span class="section-title__yellow">News</span>
-            <span class="section-title-ja text-center">日付</span>
+            <span class="section-title-ja text-center"><?php echo $date ?></span>
         </h2>
         <article class="news-detail">
             <dl class="clearfix">
-                <dd class="news-title">ニュースタイトル</dd>
-                <dd>ニュース詳細：あいうえおかきくけこさしすせそたちつてと</dd>
+                <dt class="news-title"><?php echo $title ?></dt>
+                <dd><?php echo $detail ?></dd>
             </dl>
             
         </article>

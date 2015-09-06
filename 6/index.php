@@ -25,11 +25,13 @@
 			<dl class="clearfix">
 				<?php 
 				$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
-				$sql = "SELECT DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, news_title FROM news ORDER BY create_date DESC LIMIT 5";
+				$sql = "SELECT news_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, news_title FROM news ORDER BY create_date DESC LIMIT 5";
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute();
 				$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				foreach($results as $row) {
+					$news_id = $row['news_id'];
+					echo '<a href="news.php?news_id=' . $news_id . '">';
 					echo '<dt class="news-date">';
 					echo $row['format_date'];
 					echo '</dt>';
@@ -37,6 +39,7 @@
 					echo mb_substr($row['news_title'], 0, 10);
 					if (mb_strlen($row['news_title']) > 10) {echo ' ...';}
 					echo '</dd>';
+					echo '</a>';
 				}
 				$pdo = null;
 				?>
