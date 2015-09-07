@@ -9,7 +9,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $date = $results[0]['format_date'];
 $title = $results[0]['news_title'];
-$detail = $results[0]['news_detail'];
+$detail = nl2br($results[0]['news_detail']);
 
 $pdo = null;
 ?>
