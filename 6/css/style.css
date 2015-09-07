@@ -169,6 +169,13 @@ news-parts
 .view-detail{
     margin-top:56px;
 }
+.news-title{
+	font-size: 1.2em;
+	margin-bottom: 36px;
+}
+.news-next{
+	float: right;
+}
 /*---------------------
 cource-parts
 ----------------------*/

@@ -44,7 +44,7 @@
 				$pdo = null;
 				?>
 			</dl>
-            <p class="view-detail text-right"><a href="#">ニュース一覧を見る</a></p>
+            <p class="view-detail text-right"><a href="news_list.php?page=1">ニュース一覧を見る</a></p>
         </article>
     </section>
    
