@@ -1,15 +1,18 @@
 <?php 
+define('NEWS_VIEW', 10);	// 1ページに表示する件数
 
 // 検索文字列取得
 $search = '';
 if (isset($_POST['search'])) {
 	$search = $_POST['search'];
-	echo '「' . $search . '」で検索...';
+	//echo '「' . $search . '」で検索...';
 }
 
 // 表示ページ数取得
-define('NEWS_VIEW', 5);
-$page = intval($_GET['page']);
+$page = 1;
+if (isset($_GET['page'])) {
+	$page = intval($_GET['page']);
+}
 $news_start = ($page - 1) * NEWS_VIEW;
 
 // ====================
@@ -30,28 +33,28 @@ if ($search != "") {
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// HTML作成
+// table作成
 $view = '';
-$view = $view . '<table border="1" width="900" cellspacing="0" cellpadding="5" bordercolor="#ccc">';
+$view = $view . '<table>';
 $view = $view . '<tr>';
-$view = $view . '<th width="100">投稿日</th>';
-$view = $view . '<th width="600">タイトル</th>';
-$view = $view . '<th width="100">表示</th>';
-$view = $view . '<th width="100">編集</th>';
+$view = $view . '<th>投稿日</th>';
+$view = $view . '<th>タイトル</th>';
+$view = $view . '<th>表示</th>';
+$view = $view . '<th>編集</th>';
 $view = $view . '</tr>';
 foreach($results as $row) {
 	$news_id = $row['news_id'];
 	$view = $view . '<tr>';
-	$view = $view . '<td>';
+	$view = $view . '<td id="table_date">';
 	$view = $view . $row['format_date'];
 	$view = $view . '</td>';
-	$view = $view . '<td class="news-title">';
+	$view = $view . '<td id="table_title">';
 	$view = $view . $row['news_title'];
 	$view = $view . '</td>';
-	$view = $view . '<td>';
+	$view = $view . '<td id="table_view">';
 	$view = $view . ($row['show_flg'] == 1 ? 'ON' : 'OFF');
 	$view = $view . '</td>';
-	$view = $view . '<td>';
+	$view = $view . '<td id="table_edit">';
 	$view = $view . '<a href="update.php?news_id=' . $news_id . '">編集</a>';
 	$view = $view . '</td>';
 	$view = $view . '</tr>';
@@ -78,76 +81,39 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $news_cnt = $results[0]['cnt'];
 $max_page = ceil($news_cnt / NEWS_VIEW);
 
-$view = $view . '<div id="page_change">';
-
 // 現在1ページ目以外なら「前のn件」表示
+$view_page = "";
 if ($page != 1) {
-	$view = $view . '<div id="prev"><a href="news_list.php?page=' . (intval($_GET['page']) - 1) . '">前の'. NEWS_VIEW . '件</a></div>';
+	$view_page = $view_page . '<a href="news_list.php?page=' . ($page - 1) . '">前へ</a>';
 } else {
-	$view = $view . '<div id="prev">　</div>';
+	$view_page = $view_page . '前へ';
 }
 
 // 「現在のページ数 / 最大ページ数」表示
-$view = $view. '<div id="page">' . $page . ' / ' . $max_page . '</div>';
+$view_page = $view_page . '　　' . $page . ' / ' . $max_page . '　　';
 
 // 現在最終ページ以外なら「次のn件」表示
 if ($max_page != $page) {
-	$view = $view . '<div id="next"><a href="news_list.php?page=' . (intval($_GET['page']) + 1) . '">次の' . NEWS_VIEW . '件</a></div>';
+	$view_page = $view_page . '<a href="news_list.php?page=' . ($page + 1) . '">次へ</a>';
+} else {
+	$view_page = $view_page . '次へ';
 }
-$view = $view . '</div>';
 
 $pdo = null;
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta charset="UTF-8">
-	<style>
-		.list {
-			width: 900px;
-		}
-		.search {
-			width: 900px;
-			text-align: right;
-		}
-		table {
-		}
-		#page_change {
-		}
-		#prev {
-			float: left;
-			width: 100px;
-			text-align: center;
-		}
-		#page {
-			float: left;
-			width: 700px;
-			text-align: center;
-		}
-		#next {
-			float: left;
-			width: 100px;
-			text-align: center;
-		}
-	</style>
-</head>
-<body>
-    <header></header>
-    
-	<section class="search">
-		<form action="news_list.php?page=1" method="post">
-			検索：<input type="text" name="search" value="" />
-		</form>
-	</section>
-	<section class="list">
-        <h2></h2>
-        <?php echo $view ?>
-    </section>
+<?php include('header.php'); ?>
 
-    <footer></footer>
+<section class="search">
+	<form action="news_list.php?page=1" method="post">
+		検索：<input type="text" name="search" value="" />
+	</form>
+</section>
+<section class="news_list">
+	<?php echo $view ?>
+</section>
+<section class="page">
+	<?php echo $view_page ?>
+</section>
 
-    <!--end #information-->
-</body>
-</html>
+<?php include('footer.php'); ?>

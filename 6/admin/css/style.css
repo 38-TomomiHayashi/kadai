@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+body{
+	margin: 20px;
+    font-size:1.0em;
+    font-family:'Helvetica Neue', Helvetica, Arial, YuGothic, 'Yu Gothic', 游ゴシック体, '游ゴシック', 'ヒラギノ角ゴ ProN W3', 'Hiragino         Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'MS ゴシック', 'MS Gothic', sans-serif;
+}
+
+
+/*---------------------
+common classes
+----------------------*/
+.inner{
+    margin:0 auto;    
+}
+
+.text-center{
+    text-align:center;
+}
+.text-right{
+    text-align:right;
+}
+
+a {
+	color: #3333ee;
+}
+
+/*---------------------
+header
+----------------------*/
+header {
+	border-bottom: solid 1px #333;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+header a {
+	color: #555;
+}
+
+/*---------------------
+index
+----------------------*/
+.logoff {
+	text-align: right;
+}
+.menu ol {
+	padding-left: 20px;
+	font-size: 1.5em;
+	line-height: 1.5em;
+}
+
+/*---------------------
+input and update
+----------------------*/
+#form_input, #form_update {
+	width: 800px;
+	margin: 30px auto;
+	padding: 10px;
+	border: solid 1px #ccc;
+	text-align: right;
+}
+#form_input dt, #form_update dt {
+	clear: both;
+	float: left;
+	width: 100px;
+	text-align: right;
+	line-height: 2.0em;
+}
+#form_input dd, #form_update dd {
+	margin-top: 6px;
+	margin-left: 10px;
+	float: left;
+	text-align: left;
+}
+#form_input dl:after, #form_update dl:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.btn {
+	width: 100px;
+	text-align: center;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+/*---------------------
+news list
+----------------------*/
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+th {
+	padding: 6px;
+	text-align: center;
+	vertical-align: top;
+	color: #333;
+	background-color: #eee;
+	border: 1px solid #b9b9b9;
+}
+td {
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #b9b9b9;
+}
+
+.search {
+	width: 100%;
+	text-align: right;
+}
+.news_list {
+	width: 100%;
+}
+.news_list #table_date {
+	width: 100px;
+}
+.news_list #table_title {
+	width: auto;
+}
+.news_list #table_view {
+	width: 100px;
+	text-align: center;
+}
+.news_list #table_edit {
+	width: 100px;
+	text-align: center;
+}
+.page {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+}

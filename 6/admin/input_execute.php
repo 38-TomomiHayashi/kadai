@@ -14,16 +14,13 @@ $stmt->bindValue(':author', $author, PDO::PARAM_STR);
 $result = $stmt->execute();
 // var_dump($result);
 if($result) {
-	echo "データが登録できました";
-	echo '<a href="index.php">管理画面へ</a>';
+	$msg = "データが登録できました";
 } else {
-	echo "データの登録に失敗しました";
+	$msg = "データの登録に失敗しました";
 }
 $pdo = null;
 ?>
-<html>
-<head>
-</head>
-<body>
-</body>
-</html>
+
+<?php include('header.php'); ?>
+<div class="message"></div><?php echo $msg ?></div>
+<?php include('footer.php'); ?>
