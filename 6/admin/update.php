@@ -1,5 +1,5 @@
 <?php
-$news_id = $_GET['news_id'];
+$news_id = (int)$_GET['news_id'];
 
 $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 $sql = "SELECT * FROM news WHERE news_id = " . $news_id;

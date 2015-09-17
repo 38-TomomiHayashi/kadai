@@ -1,9 +1,9 @@
 <?php
-$news_id = $_POST["news_id"];
-$news_title = $_POST["news_title"];
-$news_detail = $_POST["news_detail"];
+$news_id = (int)$_POST["news_id"];
+$news_title = htmlspecialchars($_POST["news_title"], ENT_QUOTES, 'UTF-8');
+$news_detail = htmlspecialchars($_POST["news_detail"], ENT_QUOTES, 'UTF-8');
 $show_flg = ($_POST["show_flg"] == 'ON' ? 1 : 0);
-$author = $_POST["author"];
+$author = htmlspecialchars($_POST["author"], ENT_QUOTES, 'UTF-8');
 
 $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 $sql = "UPDATE news SET news_title = :news_title, news_detail = :news_detail, show_flg = :show_flg, author = :author, update_date = SYSDATE() WHERE news_id = " . $news_id;

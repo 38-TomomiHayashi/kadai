@@ -1,8 +1,8 @@
 <?php
-$news_title = $_POST["news_title"];
-$news_detail = $_POST["news_detail"];
+$news_title = htmlspecialchars($_POST["news_title"], ENT_QUOTES, 'UTF-8');
+$news_detail = htmlspecialchars($_POST["news_detail"], ENT_QUOTES, 'UTF-8');
 $show_flg = ($_POST["show_flg"] == 'ON' ? 1 : 0);
-$author = $_POST["author"];
+$author = htmlspecialchars($_POST["author"], ENT_QUOTES, 'UTF-8');
 
 $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
 $sql = "INSERT INTO news (news_id, news_title, news_detail, show_flg, author, create_date, update_date) VALUES (NULL, :news_title, :news_detail, :show_flg, :author, sysdate(), sysdate()) ";
