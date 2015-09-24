@@ -1,0 +1,214 @@
+@charset "utf-8";
+
+body{
+    font-size:1.0em;
+    font-family:'Helvetica Neue', Helvetica, Arial, YuGothic, 'Yu Gothic', 游ゴシック体, '游ゴシック', 'ヒラギノ角ゴ ProN W3', 'Hiragino         Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'MS ゴシック', 'MS Gothic', sans-serif;
+}
+
+
+/*---------------------
+common classes
+----------------------*/
+.inner{
+    margin:0 auto;    
+}
+
+.text_center{
+    text-align:center;
+}
+.text_right{
+    text-align:right;
+}
+
+a {
+	color: #ff6699;
+}
+
+a:hover {
+	color: #ffcccc;
+}
+
+h1 {
+	font-size: 2.0em;
+}
+h2 {
+	font-size: 1.5em;
+}
+h3 {
+	font-size: 1.1em;
+}
+/*---------------------
+header
+----------------------*/
+header {
+	margin: 10px;
+}
+header input {
+	height: 20px;
+}
+
+/*---------------------
+menu_area
+----------------------*/
+/* menu */
+#menu:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#menu {
+	width: 100%;
+	background: #666;
+}
+#menu li {
+	width: 120px;
+	float: left;
+	text-align: center;
+}
+#menu li a {
+	width: auto;
+	color: #fff;
+	padding: 10px 0;
+	display: block;
+	background: #666;
+	border-right: solid 1px #555;
+	border-left: solid 1px #777;
+}
+#menu li a:hover {
+	background: #555;
+}
+
+/* submenu */
+#submenu:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#submenu {
+	width: 100%;
+	background: #ddd;
+}
+#submenu li {
+	width: 100px;
+	float: left;
+	text-align: center;
+}
+#submenu li a {
+	width: auto;
+	color: #666;
+	padding: 8px 0;
+	display: block;
+	background: #ddd;
+	font-size: 0.9em;
+}
+#submenu li a:hover {
+	background: #ccc;
+	color: #fff;
+}
+
+/*---------------------
+content_area
+----------------------*/
+#content_area:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+#content_area {
+	width: 1040px;
+	height: auto;
+	margin: 0 auto;
+}
+
+/*---------------------
+main_area
+----------------------*/
+#main_area {
+	float: left;
+	width: 780px;
+	margin-top: 10px;
+}
+.post_short:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.post_short {
+	border: solid 1px #ccc;
+	margin-top: 20px;
+	padding: 5px;
+}
+.post_short img {
+	float: left;
+	width: 210px;
+	height: 140px;
+	margin-right: 10px;
+}
+.post_short h3 {
+	margin-top: 5px;
+}
+.post_short #date {
+	margin-top: 10px;
+	color: #555;
+}
+.post_short #detail {
+	margin-top: 10px;
+}
+
+/*---------------------
+sidebar_area
+----------------------*/
+#sidebar_area {
+	float: right;
+	width: 240px;
+}
+.sidebar_item {
+	margin-top: 20px;
+	padding: 5px;
+}
+.sidebar_item ul {
+	margin: 10px;
+	line-height: 2.0em;
+}
+.sidebar_title {
+	border-top: dotted 1px #666;
+	border-bottom: dotted 1px #666;
+	padding: 5px 0 5px 5px;
+}
+
+/*---------------------
+post
+----------------------*/
+#post #post_image {
+	width: 300px;
+	height: 200px;
+	margin: 20px auto 0 auto;
+}
+#post img {
+	width: 100%;
+	height: auto;
+}
+#post #post_date {
+	margin-top: 20px;
+	color: #555;
+	text-align: center;
+	font-size: 1.1em;
+}
+#post #post_meta {
+	margin-top: 10px;
+	color: #555;
+}
+#post h2 {
+	margin-top: 30px;
+}
+#post #post_detail {
+	margin-top: 20px;
+}
+
+/*---------------------
+footer
+----------------------*/
+footer {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
