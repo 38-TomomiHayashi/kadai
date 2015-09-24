@@ -30,11 +30,11 @@ $tag_list = get_tag_list($post_id);
 $meta = "";
 $meta = $meta . 'by.' . '<a href="post_list_poster.php?id=' . $poster_id . '">' . $poster_name . '</a>';
 $meta = $meta . '　';
-$meta = $meta . 'カテゴリー：<a href="post_list_category.php?id=' . $category_id . '">' . $category_name . '</a>';
+$meta = $meta . '<a class="category" href="post_list_category.php?id=' . $category_id . '">' . $category_name . '</a>';
 if (0 != count($tag_list)) {
-	$meta = $meta . '　タグ：';
+	$meta = $meta . '　';
 	foreach ($tag_list as $tag_info) {
-		$meta = $meta . '<a href="post_list_tag.php?id=' . $tag_info['tag_id'] . '">' . $tag_info['tag_name'] . '</a>';
+		$meta = $meta . '<a class="tag" href="post_list_tag.php?id=' . $tag_info['tag_id'] . '">' . $tag_info['tag_name'] . '</a>';
 		$meta = $meta . '　';
 	}
 }

@@ -204,6 +204,32 @@ post
 #post #post_detail {
 	margin-top: 20px;
 }
+#post_meta .category {
+	background-color: #ff99ff;
+	color: #fff;
+	border-right: solid 1px #ff66ff;
+	border-bottom: solid 1px #ff66ff;
+	padding: 2px 4px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+#post_meta .category:hover {
+	background-color: #ffccff;
+}
+#post_meta .tag {
+	background-color: #ffff99;
+	color: #888;
+	border-right: solid 1px #ffcc99;
+	border-bottom: solid 1px #ffcc99;
+	padding: 2px 6px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+#post_meta .tag:hover {
+	background-color: #ffffcc;
+}
 
 /*---------------------
 footer
