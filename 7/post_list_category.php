@@ -1,5 +1,4 @@
 <?php
-
 include('function.php');
 
 $category_id = 0;
@@ -7,16 +6,12 @@ if (isset($_GET['id'])) {
 	$category_id = (int)$_GET['id'];
 }
 
-$pdo = new PDO("mysql:host=localhost;dbname=tech_news;charset=utf8", "root", "");
-$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE category_id=" . $category_id . " and show_flg=1 ORDER BY create_date DESC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE category_id= :category_id and show_flg=1 ORDER BY create_date DESC";
+$bind_info = array(array('var' => ':category_id', 'value' => $category_id, 'param' => PDO::PARAM_INT));
 
+$results = sql_contact($sql, $bind_info);
 $post_list = create_post_list($results);
 $category_name = get_category($category_id);
-
-$pdo = null;
 ?>
 
 <?php include('header.php'); ?>

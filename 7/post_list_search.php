@@ -1,24 +1,18 @@
 <?php
-
 include('function.php');
-$search = "";
-$post_list = "";
 
+$search = "";
 if (isset($_POST['search'])) {
 	$search = $_POST['search'];
 }
 
+$post_list = "";
 if ("" != $search) {
-	$pdo = new PDO("mysql:host=localhost;dbname=tech_news;charset=utf8", "root", "");
 	$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE post_title LIKE :search and show_flg=1 ORDER BY create_date DESC";
-	$stmt = $pdo->prepare($sql);
-	$stmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
-	$stmt->execute();
-	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$bind_info = array(array('var' => ':search', 'value' => "%$search%", 'param' => PDO::PARAM_STR));
 
+	$results = sql_contact($sql, $bind_info);
 	$post_list = create_post_list($results);
-
-	$pdo = null;
 }
 ?>
 

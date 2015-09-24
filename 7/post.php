@@ -6,11 +6,9 @@ if (isset($_GET['id'])) {
 	$post_id = (int)$_GET['id'];
 }
 
-$pdo = new PDO("mysql:host=localhost;dbname=tech_news;charset=utf8", "root", "");
-$sql = "SELECT DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_title, post_detail, category_id, post_image, poster_id FROM post WHERE post_id = " . $post_id;
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_title, post_detail, category_id, post_image, poster_id FROM post WHERE post_id = :post_id";
+$bind_info = array(array('var' => ':post_id', 'value' => $post_id, 'param' => PDO::PARAM_INT));
+$results = sql_contact($sql, $bind_info);
 
 $date = $results[0]['format_date'];
 $image = ("" == $results[0]['post_image']) ? 'img/image_none.png' : $results[0]['post_image'];
@@ -44,11 +42,11 @@ if (0 != count($tag_list)) {
 //====================
 // 閲覧数設定
 //====================
+$pdo = new PDO("mysql:host=localhost;dbname=tech_news;charset=utf8", "root", "");
 $sql = "INSERT INTO pv (post_id, pv_date) VALUES (:post_id, sysdate()) ";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
 $result = $stmt->execute();
-
 $pdo = null;
 
 ?>
