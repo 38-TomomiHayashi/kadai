@@ -29,7 +29,8 @@ function get_category ($category_id) {
 	$sql = "SELECT category_name FROM category WHERE category_id = :category_id";
 	$bind_info = array(array('var' => ':category_id', 'value' => $category_id, 'param' => PDO::PARAM_INT));
 	$results = sql_contact($sql, $bind_info);
-	if (isset($results)) {
+	$category_name = "";
+	if (count($results)) {
 		$category_name = $results[0]['category_name'];
 	}
 	return $category_name;
@@ -44,7 +45,8 @@ function get_poster ($poster_id) {
 	$sql = "SELECT poster_name FROM poster WHERE poster_id = :poster_id";
 	$bind_info = array(array('var' => ':poster_id', 'value' => $poster_id, 'param' => PDO::PARAM_INT));
 	$results = sql_contact($sql, $bind_info);
-	if (isset($results)) {
+	$poster_name = "";
+	if (count($results)) {
 		$poster_name = $results[0]['poster_name'];
 	}
 	return $poster_name;
@@ -59,7 +61,8 @@ function get_tag ($tag_id) {
 	$sql = "SELECT tag_name FROM tag WHERE tag_id = :tag_id";
 	$bind_info = array(array('var' => ':tag_id', 'value' => $tag_id, 'param' => PDO::PARAM_INT));
 	$results = sql_contact($sql, $bind_info);
-	if (isset($results)) {
+	$tag_name = "";
+	if (count($results)) {
 		$tag_name = $results[0]['tag_name'];
 	}
 	return $tag_name;

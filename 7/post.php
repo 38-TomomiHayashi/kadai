@@ -28,13 +28,13 @@ $tag_list = get_tag_list($post_id);
 
 // メタ情報作成
 $meta = "";
-$meta = $meta . 'by.' . '<a href="post_list_poster.php?id=' . $poster_id . '">' . $poster_name . '</a>';
+$meta = $meta . 'by.' . '<a href="post_list.php?poster_id=' . $poster_id . '">' . $poster_name . '</a>';
 $meta = $meta . '　';
-$meta = $meta . '<a class="category" href="post_list_category.php?id=' . $category_id . '">' . $category_name . '</a>';
+$meta = $meta . '<a class="category" href="post_list.php?category_id=' . $category_id . '">' . $category_name . '</a>';
 if (0 != count($tag_list)) {
 	$meta = $meta . '　';
 	foreach ($tag_list as $tag_info) {
-		$meta = $meta . '<a class="tag" href="post_list_tag.php?id=' . $tag_info['tag_id'] . '">' . $tag_info['tag_name'] . '</a>';
+		$meta = $meta . '<a class="tag" href="post_list.php?tag_id=' . $tag_info['tag_id'] . '">' . $tag_info['tag_name'] . '</a>';
 		$meta = $meta . '　';
 	}
 }
