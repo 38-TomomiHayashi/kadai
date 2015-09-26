@@ -4,7 +4,7 @@
 // 新着記事
 // ====================
 $sql = "SELECT post_id, post_title FROM post WHERE show_flg = 1 ORDER BY create_date DESC LIMIT 5";
-$results = sql_contact($sql);
+$results = sqlContact($sql);
 
 // リスト作成
 $new_post = '';
@@ -23,7 +23,7 @@ $new_post = $new_post . '</ul>';
 // 人気記事
 // ====================
 $sql = "SELECT pv.post_id, post.post_title, COUNT(pv.post_id) as pv_cnt FROM pv INNER JOIN post ON post.post_id = pv.post_id WHERE post.show_flg = 1 GROUP BY pv.post_id ORDER BY pv_cnt DESC LIMIT 10";
-$results = sql_contact($sql);
+$results = sqlContact($sql);
 
 // リスト作成
 $popular_post = '';

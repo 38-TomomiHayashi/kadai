@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
 
 $sql = "SELECT DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_title, post_detail, category_id, post_image, poster_id FROM post WHERE post_id = :post_id";
 $bind_info = array(array('var' => ':post_id', 'value' => $post_id, 'param' => PDO::PARAM_INT));
-$results = sql_contact($sql, $bind_info);
+$results = sqlContact($sql, $bind_info);
 
 $date = $results[0]['format_date'];
 $image = ("" == $results[0]['post_image']) ? 'img/image_none.png' : $results[0]['post_image'];
@@ -18,13 +18,13 @@ $category_id = $results[0]['category_id'];
 $poster_id = $results[0]['poster_id'];
 
 // カテゴリー取得
-$category_name = get_category($category_id);
+$category_name = getCategory($category_id);
 
 // 投稿者取得
-$poster_name = get_poster($poster_id);
+$poster_name = getPoster($poster_id);
 
 // タグリスト取得
-$tag_list = get_tag_list($post_id);
+$tag_list = getTagList($post_id);
 
 // メタ情報作成
 $meta = "";

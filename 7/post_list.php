@@ -14,7 +14,7 @@ $bind_info = null;
 // カテゴリーで絞り込み
 if (isset($_GET['category_id'])) {
 	$category_id = (int)$_GET['category_id'];
-	$refine = 'カテゴリー：' . get_category($category_id);
+	$refine = 'カテゴリー：' . getCategory($category_id);
 	$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE category_id= :category_id and show_flg=1 ORDER BY create_date DESC";
 	$bind_info = array(array('var' => ':category_id', 'value' => $category_id, 'param' => PDO::PARAM_INT));
 }
@@ -22,7 +22,7 @@ if (isset($_GET['category_id'])) {
 // タグで絞り込み
 else if (isset($_GET['tag_id'])) {
 	$tag_id = (int)$_GET['tag_id'];
-	$refine = 'タグ：' . get_tag($tag_id);
+	$refine = 'タグ：' . getTag($tag_id);
 	$sql = "SELECT post.post_id, DATE_FORMAT(post.create_date,'%Y.%m.%d') as format_date, post.post_image, post.post_title, post_detail FROM post INNER JOIN post_tag ON post.post_id = post_tag.post_id WHERE post_tag.tag_id = :tag_id";
 	$bind_info = array(array('var' => ':tag_id', 'value' => $tag_id, 'param' => PDO::PARAM_INT));
 	
@@ -31,7 +31,7 @@ else if (isset($_GET['tag_id'])) {
 // 投稿者で絞り込み
 else if (isset($_GET['poster_id'])) {
 	$poster_id = (int)$_GET['poster_id'];
-	$refine = '投稿者：' . get_poster($poster_id);
+	$refine = '投稿者：' . getPoster($poster_id);
 	$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE poster_id= :poster_id and show_flg=1 ORDER BY create_date DESC";
 	$bind_info = array(array('var' => ':poster_id', 'value' => $poster_id, 'param' => PDO::PARAM_INT));
 }
@@ -49,8 +49,19 @@ else {
 	$sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE show_flg=1 ORDER BY create_date DESC";
 }
 
-$results = sql_contact($sql, $bind_info);
-$post_list = create_post_list($results);
+$results = sqlContact($sql, $bind_info);
+$post_list = "";
+foreach($results as $row) {
+	$post_id = $row['post_id'];
+	$post_image = ("" == $row['post_image']) ? 'img/image_none.png' : $row['post_image'];
+
+	$post_list = $post_list . '<div class="post_short">';
+	$post_list = $post_list . '<img src="' . $post_image . '">';
+	$post_list = $post_list . '<div id="date">' . $row['format_date'] . '</div>';
+	$post_list = $post_list . '<h3>' . '<a href="post.php?id=' . $post_id . '">' . $row['post_title'] . '</a></h3>';
+	$post_list = $post_list . '<div id="detail">' . mb_substr($row['post_detail'], 0, 150) . ' ...</div>';
+	$post_list = $post_list . '</div>';
+}
 
 ?>
 

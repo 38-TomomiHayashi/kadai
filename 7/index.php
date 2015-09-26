@@ -3,7 +3,7 @@ include('function.php');
 
 // 新着順に記事リストを表示
 $sql = "SELECT post_id, DATE_FORMAT(create_date,'%Y.%m.%d') as format_date, post_image, post_title, post_detail FROM post WHERE show_flg=1 ORDER BY create_date DESC";
-$results = sql_contact($sql);
+$results = sqlContact($sql);
 $post_list = "";
 foreach($results as $row) {
 	$post_id = $row['post_id'];
