@@ -37,6 +37,34 @@ h2 {
 h3 {
 	font-size: 1.1em;
 }
+
+.btn {
+	width: auto;
+	height: 30px;
+	background-color: #fff;
+	color: #000;
+	border: solid 1px #999;
+	padding: 4px 8px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	cursor: pointer;
+}
+.btn:hover {
+	color: #999;
+}
+
+.dl_block {
+	width: 50%;
+	margin: 10px;
+	padding: 10px;
+	border: solid 1px #aaa;
+	line-height: 1.5em;
+}
+.dl_block ul {
+	margin-left: 30px;
+	list-style: circle;
+}
 /*---------------------
 header
 ----------------------*/
@@ -58,7 +86,7 @@ menu_area
 }
 #menu {
 	width: 100%;
-	background: #666;
+	/* background: #666; */
 }
 #menu li {
 	width: 120px;
@@ -76,6 +104,12 @@ menu_area
 }
 #menu li a:hover {
 	background: #555;
+}
+#menu .menu_margin {
+	width: calc(100% - 120px * 4); /* 【課題】要素数がいくつでもいいようにしたい */
+}
+#menu .menu_margin a:hover {
+	background: #666;
 }
 
 /* submenu */
@@ -104,6 +138,28 @@ menu_area
 #submenu li a:hover {
 	background: #ccc;
 	color: #fff;
+}
+
+/* drop_menu */
+.drop_menu ul {
+	position: absolute;
+}
+.drop_menu ul li {
+	overflow: hidden;
+	height: 0;
+	clear: both;
+}
+.drop_menu:hover ul li{
+	overflow: visible;
+	height: auto;
+	border-top: solid 1px #555;
+	border-bottom: solid 1px #777;
+}
+.drop_menu:hover ul li:first-child {
+	border-top: solid 1px #fff;
+}
+.drop_menu:hover ul li:last-child {
+	border-bottom: 0;
 }
 
 /*---------------------
@@ -237,4 +293,12 @@ footer
 footer {
 	margin-top: 30px;
 	margin-bottom: 20px;
+}
+
+/*---------------------
+admin_content_area
+----------------------*/
+#admin_content_area {
+	padding: 20px 10px;
+	width: 100%;
 }

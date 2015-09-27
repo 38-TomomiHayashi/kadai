@@ -22,11 +22,13 @@
 			<li><a href="post_list.php?category_id=1">ニュース</a></li>
 			<li><a href="post_list.php?category_id=2">コラム</a></li>
 			<li><a href="post_list.php?category_id=3">連載</a></li>
+			<li class="menu_margin"><a>　</a></li>
 		</ul>
 		<ul id="submenu">
 			<li><a href="post_list.php?tag_id=1">HTML5</a></li>
 			<li><a href="post_list.php?tag_id=2">CSS3</a></li>
 			<li><a href="post_list.php?tag_id=3">JavaScript</a></li>
 			<li><a href="post_list.php?tag_id=4">PHP</a></li>
+			<li class="menu_margin"><a>　</a></li>
 		</ul>
 	</section>
