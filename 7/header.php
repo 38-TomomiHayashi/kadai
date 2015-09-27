@@ -10,7 +10,7 @@
 	<header>
 		<h1><a href="index.php">TECH. NEWS</a></h1>
 		<div class="text_right" id="search">
-			<form action="post_list_search.php" method="post">
+			<form action="post_list.php" method="post">
 				<input type="text" name="search" value="" />
 				<input type="submit" name="search_btn" value="検索">
 			</form>

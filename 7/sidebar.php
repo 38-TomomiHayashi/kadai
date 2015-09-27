@@ -28,10 +28,12 @@ $results = sqlContact($sql);
 // リスト作成
 $popular_post = '';
 $popular_post = $popular_post . '<ul>';
+$rank = 0;
 foreach($results as $row) {
 	$post_id = $row['post_id'];
 	$popular_post = $popular_post . '<li>';
 	$popular_post = $popular_post . '<a href="post.php?id=' . $post_id . '">';
+	$popular_post = $popular_post . ++$rank . '. ';
 	$popular_post = $popular_post . $row['post_title'];
 	$popular_post = $popular_post . '</a>';
 	$popular_post = $popular_post . '</li>';
