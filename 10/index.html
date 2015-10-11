@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:title" content="Milkcocoaで作ったリアルタイムチャット" />
+    <meta property="og:type" content="chat" />
+    <meta property="og:description" content="BaaS（Milkcocoa）で作られたリアルタイムチャット" />
+    <title>Milkcocoaで作ったリアルタイムチャット</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+    <script>
+	$(function() {
+		$('#name-button').click(function () {
+			var myname = $("#input-name").val();
+			if (myname != "") {
+				// ローカルストレージに名前を保存
+				localStorage.setItem("myname", myname);
+				
+				// ページ移動
+				document.location = "linelike.html";
+
+			}
+		})
+	});
+	//インジェクション対策
+	function escapeHTML(val) {
+		return $('<div>').text(val).html();
+	};
+	</script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="logo">LINE LIKE</h1>
+    </div>
+
+    <div class="container">
+            <div class="" id="login">
+                <textarea name="" id="input-name" cols="20" rows="1" placeholder="なまえ"></textarea>
+				<button id="name-button" class="button">決定！</button>
+            </div>
+        </div>
+	</div>
+</body>
+</html>
